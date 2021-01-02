@@ -12,8 +12,8 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance,
   if (GetLastError() == ERROR_ALREADY_EXISTS) {
     exit(0);
   }
+  CloseHandle(mutex);
 
   Communicator communicator(server_address, port, key);
   communicator.Handler();
-  CloseHandle(mutex);
 }
