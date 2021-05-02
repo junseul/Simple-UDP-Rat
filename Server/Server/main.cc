@@ -46,31 +46,7 @@ void Title();
 std::vector<Client*> clients;
 int bot_count = 0;
 
-int HwidHandler() {
-  SYSTEM_INFO siSysInfo;
-  GetSystemInfo(&siSysInfo);
-
-  int Info_1 = siSysInfo.dwOemId;
-  int Info_2 = siSysInfo.dwNumberOfProcessors;
-  int Info_3 = siSysInfo.dwProcessorType;
-  int Info_4 = siSysInfo.dwActiveProcessorMask;
-  int Info_5 = siSysInfo.wProcessorLevel;
-  int Info_6 = siSysInfo.wProcessorRevision;
-
-  int HWID_Calculator[6] = {Info_1, Info_2, Info_3, Info_4, Info_5, Info_6};
-  int HWID = HWID_Calculator[0, 1, 2, 3, 4, 5] * 2 * 4 * 8 * 16 * 32 * 64 * 120;
-  return HWID;
-}
-
 int main() {
-  if (HwidHandler() != 00000000) { //이거 수정
-    //exit(0);
-  }
-
-  WCHAR message[128];
-  wsprintf(message, TEXT("Licensed for %d"), HwidHandler());
-  MessageBox(NULL, message, TEXT("Warning"), MB_OK);
-
   std::thread listner(BotListener);
   std::thread title(Title);
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
